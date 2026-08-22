@@ -49,7 +49,7 @@ if (allowedChannels.length > 0) {
 // Initialize Gemini AI
 const genAI = new GoogleGenerativeAI(GEMINI_API_KEY);
 const model = genAI.getGenerativeModel({
-    model: 'gemini-1.5-flash',
+    model: process.env.GEMINI_MODEL || 'gemini-3.5-flash',
     systemInstruction: systemInstruction,
 });
 
