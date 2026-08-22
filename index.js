@@ -100,15 +100,18 @@ client.on('messageCreate', async (message) => {
         await message.channel.sendTyping();
 
         // Extract and clean the prompt (remove bot mention if any)
-        let prompt = message.content;
+        let promptText = message.content;
         const botMentionRegex = new RegExp(`<@!?${client.user.id}>`, 'g');
-        prompt = prompt.replace(botMentionRegex, '').trim();
+        promptText = promptText.replace(botMentionRegex, '').trim();
 
         // If the message was just a mention with no question, reply with a helper
-        if (prompt.length === 0) {
-            await message.reply("Hi! I am the ICN AI Assistant. How can I help you today? Ask me about trading, tickets, or server rules!");
+        if (promptText.length === 0) {
+            await message.reply(`Hey <@${message.author.id}>, I am the AI Assistant. How can I help you today? Ask me about trading, tickets, or server rules!`);
             return;
         }
+
+        // Format the prompt with user identity so Gemini can prepend "Hey <@userId>," as instructed
+        const prompt = `[User: ${message.author.username} (ID: ${message.author.id})]: ${promptText}`;
 
         // Get or initialize chat session for this channel/thread
         const sessionId = message.channel.id;

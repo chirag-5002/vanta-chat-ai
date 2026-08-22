@@ -1,4 +1,10 @@
+# Dependency directories
 node_modules/
+
+# Local environment files (contains secret tokens)
 .env
-.DS_Store
+.env.local
+
+# Logs
+logs/
 *.log
