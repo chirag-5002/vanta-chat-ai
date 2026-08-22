@@ -106,7 +106,7 @@ client.on('messageCreate', async (message) => {
 
         // If the message was just a mention with no question, reply with a helper
         if (promptText.length === 0) {
-            await message.reply(`Hey <@${message.author.id}>, I am the AI Assistant. How can I help you today? Ask me about trading, tickets, or server rules!`);
+            await message.reply(`Hey <@${message.author.id}>, I am Vanta, the AI Assistant for Inner Circle Network (ICN). How can I help you today? Ask me about trading, tickets, or server rules!`);
             return;
         }
 
